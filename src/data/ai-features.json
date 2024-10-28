@@ -1,0 +1,47 @@
+{
+    "courses": [
+      {
+        "id": 1,
+        "title": "A Conversation Revolution",
+        "slug": "guitar-fundamentals",
+        "description": "The Future of 24/7 Customer Interaction.", 
+        "isFeatured": true
+      },
+      {
+        "id": 2,
+        "title": "Healthcare Revolutuion",
+        "slug": "guitar-fundamentals",
+        "description": "Transforming Healthcare with AI-Powered Chatbots", 
+        "isFeatured": true 
+      },
+      {
+        "id": 3,
+        "title": "AI in Education",
+        "slug": "guitar-fundamentals",
+        "description": "Enhancing Learning with AI-Powered Educational Chatbots", 
+        "isFeatured": true 
+      },
+      {
+        "id": 6,
+        "title": "Business Communication",
+        "slug": "guitar-fundamentals",
+        "description": "Streamlining Business Communication with highly intelligent AI Chatbots", 
+        "isFeatured": true
+      },
+      {
+        "id": 7,
+        "title": "AI for Research",
+        "slug": "guitar-fundamentals",
+        "description": "Revolutionizing Research with AI Chatbots", 
+        "isFeatured": true
+      },
+      {
+        "id": 8,
+        "title": "Your Virtual Assistant Just Got Smarter",
+        "slug": "guitar-fundamentals",
+        "description": "Meet the AI Chatbots of Tomorrow.", 
+        "isFeatured": true
+      }
+    ]
+  }
+  
