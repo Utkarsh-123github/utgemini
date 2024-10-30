@@ -5,8 +5,7 @@ import { Input } from "./ui/input";
 import { cn } from "../lib/utils";
 import {
   IconBrandGithub,
-  IconBrandGoogle,
-  IconBrandOnlyfans,
+  IconBrandGoogle
 } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 
@@ -37,9 +36,6 @@ export function Signup() {
     }
   }
 
-  
-
-  
 
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
