@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "../lib/utils";
@@ -8,25 +8,34 @@ import {
   IconBrandGoogle,
   IconBrandOnlyfans,
 } from "@tabler/icons-react";
-
+import { useRouter } from "next/navigation";
 
 
 export function Signup() {
- 
+  const router = useRouter();
   const [emailAddress,setEmailAddress] = useState('');
   const [password,setPassword] = useState('');
-  const [username,setUsername] = useState('');
-  const [pendingVerification,setPendingVerification] = useState(false);
-  const [code,setCode] = useState('');
   const [error,setError] = useState('');
- 
+  const handleSubmit =async (event :FormEvent<HTMLFormElement>)=>{
+    event.preventDefault();
+    const response = await fetch("/api/user/signup",{
+      method : "POST",
+      headers : {
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        email : emailAddress,
+        password : password
+      })
+    })
 
-
-  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    console.log("Submitting form");
-  };
+    if(response.ok){
+      router.push("/signin")
+    }
+    else{
+      console.error("Registration failed");
+    }
+  }
 
   
 
@@ -41,13 +50,7 @@ export function Signup() {
         Sign up to get started with UtkarshGPT
       </p>
         <form className="my-8" onSubmit={handleSubmit}>
-        <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-          <LabelInputContainer>
-            <Label htmlFor="Username">Username</Label>
-            <Input id="username" placeholder="Tyler" type="text" value={username} onChange={(e)=>{setUsername(e.target.value)}} />
-          </LabelInputContainer>
-          
-        </div>
+        
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
           <Input id="email" placeholder="abc@gmail.com" type="email" value={emailAddress} onChange={(e)=>{setEmailAddress(e.target.value)}}/>
@@ -75,7 +78,7 @@ export function Signup() {
         <div className="flex flex-col space-y-4">
           <button
             className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-            type="submit"
+            type="submit" value="github" name="action"
           >
             <IconBrandGithub className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
             <span className="text-neutral-700 dark:text-neutral-300 text-sm">
@@ -85,7 +88,7 @@ export function Signup() {
           </button>
           <button
             className=" relative group/btn flex space-x-2 items-center justify-start px-4 w-full text-black rounded-md h-10 font-medium shadow-input bg-gray-50 dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]"
-            type="submit"
+            type="submit" value="google" name="action"
           >
             <IconBrandGoogle className="h-4 w-4 text-neutral-800 dark:text-neutral-300" />
             <span className="text-neutral-700 dark:text-neutral-300 text-sm">
