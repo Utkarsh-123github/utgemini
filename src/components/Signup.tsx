@@ -14,7 +14,7 @@ export function Signup() {
   const router = useRouter();
   const [emailAddress,setEmailAddress] = useState('');
   const [password,setPassword] = useState('');
-  const [error,setError] = useState('');
+  
   const handleSubmit =async (event :FormEvent<HTMLFormElement>)=>{
     event.preventDefault();
     const response = await fetch("/api/user/signup",{

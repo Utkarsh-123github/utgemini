@@ -1,18 +1,35 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { cn } from "../lib/utils";
 import {
   IconBrandGithub,
   IconBrandGoogle,
-  IconBrandOnlyfans,
 } from "@tabler/icons-react";
+import { signIn } from 'next-auth/react'
+import { useRouter } from "next/navigation";
 
 export function Signin() {
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const router = useRouter()
+  const [emailAddress,setEmailAddress] = useState('');
+  const [password,setPassword] = useState('');
+  const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted");
+    const signInData = await signIn('credentials',{
+      email : emailAddress,
+      password : password,
+      redirect : false
+    })
+
+    if(signInData?.error){
+      console.log("Sign in failed")
+    }
+    else{
+      router.push("/generate")
+    }
+
+    
   };
   return (
     <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
@@ -27,11 +44,15 @@ export function Signin() {
         
         <LabelInputContainer className="mb-4">
           <Label htmlFor="email">Email Address</Label>
-          <Input id="email" placeholder="abc@gmail.com" type="email" />
+          <Input id="email" placeholder="abc@gmail.com" type="email" value={emailAddress} onChange={(e)=>{
+            setEmailAddress(e.target.value)
+          }}/>
         </LabelInputContainer>
         <LabelInputContainer className="mb-4">
           <Label htmlFor="password">Password</Label>
-          <Input id="password" placeholder="••••••••" type="password" />
+          <Input id="password" placeholder="••••••••" type="password" value={password} onChange={(e)=>{
+            setPassword(e.target.value)
+          }}/>
         </LabelInputContainer>
       
         <button

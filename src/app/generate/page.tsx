@@ -1,9 +1,10 @@
+import Generate from '@/components/Generate'
 import React from 'react'
 
-const Generate = () => {
+function page() {
   return (
-    <div>Generate</div>
+    <Generate/>
   )
 }
 
-export default Generate
+export default page
